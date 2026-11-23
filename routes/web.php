@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\SkillController;
+
 
 
 
@@ -36,14 +38,17 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware(['auth', 'admin'])->group(function () {
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])
-        ->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'index'])
+            ->name('dashboard');
 
-    Route::resource('projects', ProjectController::class)
-        ->except(['show'])
-        ->names('projects');
+        Route::resource('projects', ProjectController::class)
+            ->except(['show'])
+            ->names('projects');
 
-    Route::post('/logout', [AuthController::class, 'logout'])
-        ->name('logout');
-});
+        Route::post('/logout', [AuthController::class, 'logout'])
+            ->name('logout');
+        Route::resource('skills', SkillController::class)
+            ->except(['show'])
+            ->names('skills');
+    });
 });

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -87,144 +88,150 @@
 
 <body>
 
-<div class="min-h-screen md:flex">
+    <div class="min-h-screen md:flex">
 
-    {{-- Sidebar --}}
-    <aside class="sidebar w-full md:w-64 md:min-h-screen md:fixed md:inset-y-0">
+        {{-- Sidebar --}}
+        <aside class="sidebar w-full md:w-64 md:min-h-screen md:fixed md:inset-y-0">
 
-        <div class="p-6 border-b border-gray-800">
-            <a href="{{ route('admin.dashboard') }}"
-               class="text-xl font-extrabold tracking-wide">
-                <span class="text-white">DICKSON</span>
-                <span class="text-purple-400">.ADMIN</span>
-            </a>
+            <div class="p-6 border-b border-gray-800">
+                <a href="{{ route('admin.dashboard') }}" class="text-xl font-extrabold tracking-wide">
+                    <span class="text-white">DICKSON</span>
+                    <span class="text-purple-400">.ADMIN</span>
+                </a>
 
-            <p class="text-xs text-gray-500 mt-2">
-                Portfolio Management System
-            </p>
-        </div>
-
-        <nav class="p-4 space-y-2">
-
-            <p class="text-xs uppercase tracking-wider text-gray-500 px-4 py-3">
-                Main Menu
-            </p>
-
-            <a href="{{ route('admin.dashboard') }}"
-               class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                <span>▦</span>
-                <span>Dashboard</span>
-            </a>
-
-            <a href="{{ route('admin.projects.index') }}"
-               class="nav-link {{ request()->routeIs('admin.projects.*') ? 'active' : '' }}">
-                <span>▣</span>
-                <span>Projects</span>
-            </a>
-
-            <p class="text-xs uppercase tracking-wider text-gray-500 px-4 py-3 mt-5">
-                Website
-            </p>
-
-            <a href="{{ route('home') }}" target="_blank" class="nav-link">
-                <span>↗</span>
-                <span>View Portfolio</span>
-            </a>
-
-        </nav>
-
-        <div class="p-4 md:absolute md:bottom-0 md:left-0 md:right-0">
-            <div class="border-t border-gray-800 pt-4">
-
-                <p class="text-sm text-gray-400 mb-3">
-                    Logged in as
+                <p class="text-xs text-gray-500 mt-2">
+                    Portfolio Management System
                 </p>
-
-                <p class="font-semibold text-white truncate">
-                    {{ auth()->user()->name }}
-                </p>
-
-                <p class="text-xs text-gray-500 mb-4">
-                    {{ auth()->user()->email }}
-                </p>
-
-                <form action="{{ route('admin.logout') }}" method="POST">
-                    @csrf
-
-                    <button type="submit"
-                            class="w-full text-left px-4 py-2 rounded-lg text-red-400 hover:bg-red-500/10">
-                        ↪ Logout
-                    </button>
-                </form>
-
             </div>
-        </div>
 
-    </aside>
+            <nav class="p-4 space-y-2">
 
-    {{-- Main Content --}}
-    <main class="flex-1 min-w-0 md:ml-64">
+                <p class="text-xs uppercase tracking-wider text-gray-500 px-4 py-3">
+                    Main Menu
+                </p>
 
-        <header class="bg-gray-900/70 border-b border-gray-800 px-6 py-5">
-            <div class="flex justify-between items-center">
-                <div>
-                    <h1 class="text-xl font-bold text-white">
-                        @yield('page-heading', 'Dashboard')
-                    </h1>
+                <a href="{{ route('admin.dashboard') }}"
+                    class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                    <span>▦</span>
+                    <span>Dashboard</span>
+                </a>
 
-                    <p class="text-sm text-gray-500 mt-1">
-                        Manage your professional portfolio.
+                <a href="{{ route('admin.projects.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.projects.*') ? 'active' : '' }}">
+                    <span>▣</span>
+                    <span>Projects</span>
+                </a>
+                <a href="{{ route('admin.skills.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.skills.*') ? 'bg-purple-600/20 text-purple-400' : '' }}">
+                    <span>⚙</span>
+                    Skills
+                </a>
+
+                <p class="text-xs uppercase tracking-wider text-gray-500 px-4 py-3 mt-5">
+                    Website
+                </p>
+
+                <a href="{{ route('home') }}" target="_blank" class="nav-link">
+                    <span>↗</span>
+                    <span>View Portfolio</span>
+                </a>
+
+            </nav>
+
+            <div class="p-4 md:absolute md:bottom-0 md:left-0 md:right-0">
+                <div class="border-t border-gray-800 pt-4">
+
+                    <p class="text-sm text-gray-400 mb-3">
+                        Logged in as
                     </p>
-                </div>
 
-                <span class="hidden sm:inline-block text-xs bg-purple-500/10 text-purple-300 px-3 py-2 rounded-full">
-                    Administrator
-                </span>
+                    <p class="font-semibold text-white truncate">
+                        {{ auth()->user()->name }}
+                    </p>
+
+                    <p class="text-xs text-gray-500 mb-4">
+                        {{ auth()->user()->email }}
+                    </p>
+
+                    <form action="{{ route('admin.logout') }}" method="POST">
+                        @csrf
+
+                        <button type="submit"
+                            class="w-full text-left px-4 py-2 rounded-lg text-red-400 hover:bg-red-500/10">
+                            ↪ Logout
+                        </button>
+                    </form>
+
+                </div>
             </div>
-        </header>
 
-        <div class="p-5 md:p-8">
+        </aside>
 
-            {{-- Success Message --}}
-            @if(session('success'))
-                <div class="mb-6 p-4 rounded-lg bg-green-500/10 border border-green-500/30 text-green-300">
-                    {{ session('success') }}
+        {{-- Main Content --}}
+        <main class="flex-1 min-w-0 md:ml-64">
+
+            <header class="bg-gray-900/70 border-b border-gray-800 px-6 py-5">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h1 class="text-xl font-bold text-white">
+                            @yield('page-heading', 'Dashboard')
+                        </h1>
+
+                        <p class="text-sm text-gray-500 mt-1">
+                            Manage your professional portfolio.
+                        </p>
+                    </div>
+
+                    <span
+                        class="hidden sm:inline-block text-xs bg-purple-500/10 text-purple-300 px-3 py-2 rounded-full">
+                        Administrator
+                    </span>
                 </div>
-            @endif
+            </header>
 
-            {{-- General Error Message --}}
-            @if(session('error'))
-                <div class="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-300">
-                    {{ session('error') }}
-                </div>
-            @endif
+            <div class="p-5 md:p-8">
 
-            {{-- Validation Errors --}}
-            @if($errors->any())
-                <div class="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-300">
-                    <p class="font-semibold mb-2">Please correct these errors:</p>
+                {{-- Success Message --}}
+                @if (session('success'))
+                    <div class="mb-6 p-4 rounded-lg bg-green-500/10 border border-green-500/30 text-green-300">
+                        {{ session('success') }}
+                    </div>
+                @endif
 
-                    <ul class="list-disc pl-5 space-y-1 text-sm">
-                        @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+                {{-- General Error Message --}}
+                @if (session('error'))
+                    <div class="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-300">
+                        {{ session('error') }}
+                    </div>
+                @endif
 
-            @yield('content')
+                {{-- Validation Errors --}}
+                @if ($errors->any())
+                    <div class="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/30 text-red-300">
+                        <p class="font-semibold mb-2">Please correct these errors:</p>
 
-        </div>
+                        <ul class="list-disc pl-5 space-y-1 text-sm">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-        <footer class="border-t border-gray-800 px-6 py-5 text-center text-xs text-gray-600">
-            &copy; {{ date('Y') }} Dickson Silayo. Admin Panel.
-        </footer>
+                @yield('content')
 
-    </main>
+            </div>
 
-</div>
+            <footer class="border-t border-gray-800 px-6 py-5 text-center text-xs text-gray-600">
+                &copy; {{ date('Y') }} Dickson Silayo. Admin Panel.
+            </footer>
 
-@stack('scripts')
+        </main>
+
+    </div>
+
+    @stack('scripts')
 
 </body>
+
 </html>
