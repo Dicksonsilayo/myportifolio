@@ -133,6 +133,11 @@
                     <span>Certifications</span>
 
                 </a>
+                <a href="{{ route('admin.profile.edit') }}"
+                    class="nav-link {{ request()->routeIs('admin.profile.*') ? 'active' : '' }}">
+                    <span>👤</span>
+                    <span>Profile</span>
+                </a>
                 <a href="{{ route('admin.skills.index') }}"
                     class="nav-link {{ request()->routeIs('admin.skills.*') ? 'bg-purple-600/20 text-purple-400' : '' }}">
                     <span>⚙</span>

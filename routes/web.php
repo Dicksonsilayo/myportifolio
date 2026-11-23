@@ -11,6 +11,9 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\ProfileController;
+
+
 
 
 
@@ -74,6 +77,16 @@ Route::patch('/messages/{message}/toggle-read', [MessageController::class, 'togg
 
 Route::delete('/messages/{message}', [MessageController::class, 'destroy'])
     ->name('messages.destroy');
+    // Profile Management
+Route::get('/profile', [
+    \App\Http\Controllers\Admin\ProfileController::class,
+    'edit'
+])->name('profile.edit');
+
+Route::put('/profile', [
+    \App\Http\Controllers\Admin\ProfileController::class,
+    'update'
+])->name('profile.update');
     });
 
     Route::resource('experiences', ExperienceController::class)
