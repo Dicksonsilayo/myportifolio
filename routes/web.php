@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\ExperienceController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SkillController;
@@ -52,7 +53,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('skills', SkillController::class)
             ->except(['show'])
             ->names('skills');
+            Route::resource('education ', EducationController::class)
+            ->except(['show'])
+            ->names('education');
     });
+    
     Route::resource('experiences', ExperienceController::class)
     ->except(['show'])
     ->names('experiences');

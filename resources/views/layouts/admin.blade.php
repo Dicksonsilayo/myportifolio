@@ -121,6 +121,11 @@
                     <span>▣</span>
                     <span>Projects</span>
                 </a>
+                <a href="{{ route('admin.education.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.education.*') ? 'active' : '' }}">
+                    <span>🎓</span>
+                    <span>Education</span>
+                </a>
                 <a href="{{ route('admin.skills.index') }}"
                     class="nav-link {{ request()->routeIs('admin.skills.*') ? 'bg-purple-600/20 text-purple-400' : '' }}">
                     <span>⚙</span>
