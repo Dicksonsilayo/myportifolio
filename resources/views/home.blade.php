@@ -489,48 +489,280 @@
 </section>
 
 {{-- CONTACT SECTION --}}
+
 <section class="section contact-section" id="contact">
 
     <div class="container">
 
-        <div class="contact-box">
+        {{-- Section heading --}}
+        <div class="section-heading contact-heading">
 
             <span class="section-label">07 / GET IN TOUCH</span>
 
-            <h2>
-                Have a project in mind?
-                <span>Let's talk.</span>
-            </h2>
+            <h2>Let's build something <span>together.</span></h2>
 
             <p>
-                I'm interested in software development opportunities,
-                collaborations and projects that create meaningful impact.
+                Have a project idea, collaboration opportunity, or question?
+                I'd love to hear from you. Send me a message and let's connect.
             </p>
 
-            <a href="mailto:YOUR_EMAIL@example.com" class="btn">
-                Send Me an Email
-                <i class="fas fa-paper-plane"></i>
-            </a>
+        </div>
 
-            <div class="contact-socials">
+        <div class="contact-layout">
 
-                <a href="https://github.com/DicksonSilayo"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                    <i class="fab fa-github"></i>
-                    GitHub
-                </a>
+            {{-- LEFT: Contact information --}}
+            <div class="contact-intro">
 
-                <a href="mailto:YOUR_EMAIL@example.com">
-                    <i class="fas fa-envelope"></i>
-                    Email
-                </a>
+                <div class="contact-intro-header">
+                    <span class="contact-small-label">CONTACT INFORMATION</span>
+
+                    <h3>Let's start a conversation.</h3>
+
+                    <p>
+                        I'm always interested in discussing technology,
+                        software development, and opportunities to create
+                        meaningful digital solutions.
+                    </p>
+                </div>
+
+                <div class="contact-info-list">
+
+                    <a href="https://github.com/disebene"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="contact-info-card">
+
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+
+                        <div>
+                            <span>GITHUB</span>
+                            <h4>Explore my work</h4>
+                            <p>github.com/disebene</p>
+                        </div>
+
+                        <i class="fas fa-arrow-up-right-from-square contact-arrow"></i>
+
+                    </a>
+
+                    <div class="contact-info-card">
+
+                        <div class="contact-icon">
+                            <i class="fas fa-location-dot"></i>
+                        </div>
+
+                        <div>
+                            <span>LOCATION</span>
+                            <h4>Dar es Salaam</h4>
+                            <p>Tanzania</p>
+                        </div>
+
+                    </div>
+
+                    <div class="contact-info-card">
+
+                        <div class="contact-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+
+                        <div>
+                            <span>LET'S CONNECT</span>
+                            <h4>Open to opportunities</h4>
+                            <p>Projects, collaboration and professional connections.</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="contact-decoration">
+                    <span>&lt;</span> Let's create something great <span>/&gt;</span>
+                </div>
+
+            </div>
+
+
+            {{-- RIGHT: Contact form --}}
+            <div class="contact-form-card">
+
+                <div class="contact-form-heading">
+
+                    <div>
+                        <span class="contact-small-label">SEND A MESSAGE</span>
+                        <h3>Get in touch</h3>
+                        <p>Fill in the form below and I'll get back to you.</p>
+                    </div>
+
+                    <div class="contact-form-icon">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+
+                </div>
+
+
+                {{-- Success message --}}
+                @if(session('contact_success'))
+
+                    <div class="contact-alert contact-alert-success">
+                        <i class="fas fa-circle-check"></i>
+                        <span>{{ session('contact_success') }}</span>
+                    </div>
+
+                @endif
+
+
+                {{-- General validation message --}}
+                @if($errors->any())
+
+                    <div class="contact-alert contact-alert-error">
+                        <i class="fas fa-circle-exclamation"></i>
+                        <span>Please check the highlighted fields and try again.</span>
+                    </div>
+
+                @endif
+
+
+                <form
+                    action="{{ route('contact.store') }}"
+                    method="POST"
+                    class="contact-form"
+                >
+
+                    @csrf
+
+                    <div class="contact-form-row">
+
+                        {{-- Name --}}
+                        <div class="contact-field">
+
+                            <label for="contact-name">Your Name *</label>
+
+                            <div class="contact-input-wrapper">
+
+                                <i class="fas fa-user"></i>
+
+                                <input
+                                    type="text"
+                                    id="contact-name"
+                                    name="name"
+                                    value="{{ old('name') }}"
+                                    placeholder="Enter your full name"
+                                    required
+                                >
+
+                            </div>
+
+                            @error('name')
+                                <span class="contact-error">{{ $message }}</span>
+                            @enderror
+
+                        </div>
+
+
+                        {{-- Email --}}
+                        <div class="contact-field">
+
+                            <label for="contact-email">Email Address *</label>
+
+                            <div class="contact-input-wrapper">
+
+                                <i class="fas fa-envelope"></i>
+
+                                <input
+                                    type="email"
+                                    id="contact-email"
+                                    name="email"
+                                    value="{{ old('email') }}"
+                                    placeholder="example@email.com"
+                                    required
+                                >
+
+                            </div>
+
+                            @error('email')
+                                <span class="contact-error">{{ $message }}</span>
+                            @enderror
+
+                        </div>
+
+                    </div>
+
+
+                    {{-- Subject --}}
+                    <div class="contact-field">
+
+                        <label for="contact-subject">Subject</label>
+
+                        <div class="contact-input-wrapper">
+
+                            <i class="fas fa-tag"></i>
+
+                            <input
+                                type="text"
+                                id="contact-subject"
+                                name="subject"
+                                value="{{ old('subject') }}"
+                                placeholder="What would you like to discuss?"
+                            >
+
+                        </div>
+
+                        @error('subject')
+                            <span class="contact-error">{{ $message }}</span>
+                        @enderror
+
+                    </div>
+
+
+                    {{-- Message --}}
+                    <div class="contact-field">
+
+                        <label for="contact-message">Your Message *</label>
+
+                        <div class="contact-input-wrapper contact-textarea-wrapper">
+
+                            <i class="fas fa-message"></i>
+
+                            <textarea
+                                id="contact-message"
+                                name="message"
+                                rows="6"
+                                placeholder="Write your message here..."
+                                required
+                            >{{ old('message') }}</textarea>
+
+                        </div>
+
+                        @error('message')
+                            <span class="contact-error">{{ $message }}</span>
+                        @enderror
+
+                    </div>
+
+
+                    {{-- Submit --}}
+                    <button type="submit" class="contact-submit-btn">
+
+                        <span>Send Message</span>
+
+                        <i class="fas fa-paper-plane"></i>
+
+                    </button>
+
+                    <p class="contact-form-note">
+                        <i class="fas fa-lock"></i>
+                        Your information will only be used to respond to your message.
+                    </p>
+
+                </form>
 
             </div>
 
         </div>
 
     </div>
+
 </section>
 
 @endsection

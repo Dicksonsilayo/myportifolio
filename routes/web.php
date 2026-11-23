@@ -9,9 +9,8 @@ use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\ExperienceController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SkillController;
-
-
-
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Admin\MessageController;
 
 
 
@@ -29,7 +28,9 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return redirect()->to(route('home') . '#contact');
 })->name('contact');
-
+Route::post('/contact', [ContactController::class, 'store'])
+    ->middleware('throttle:5,1')
+    ->name('contact.store');
 // Administrator authentication
 Route::prefix('admin')->name('admin.')->group(function () {
 
@@ -61,6 +62,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('certifications', CertificationController::class)
             ->except(['show'])
             ->names('certifications');
+            // Message management
+Route::get('/messages', [MessageController::class, 'index'])
+    ->name('messages.index');
+
+Route::get('/messages/{message}', [MessageController::class, 'show'])
+    ->name('messages.show');
+
+Route::patch('/messages/{message}/toggle-read', [MessageController::class, 'toggleRead'])
+    ->name('messages.toggle-read');
+
+Route::delete('/messages/{message}', [MessageController::class, 'destroy'])
+    ->name('messages.destroy');
     });
 
     Route::resource('experiences', ExperienceController::class)
