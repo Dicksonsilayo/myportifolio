@@ -7,11 +7,14 @@ use App\Models\Skill;
 use App\Models\Experience;
 use App\Models\Education;
 use App\Models\Certification;
+use App\Models\Profile;
 
 class HomeController extends Controller
 {
     public function index()
     {
+        $profile = Profile::first();
+
         $projects = Project::where('is_published', true)
             ->orderByDesc('is_featured')
             ->orderBy('sort_order')
@@ -34,6 +37,7 @@ class HomeController extends Controller
             ->get();
 
         return view('home', compact(
+            'profile',
             'projects',
             'skills',
             'experiences',

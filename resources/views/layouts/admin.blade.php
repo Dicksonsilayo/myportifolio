@@ -121,11 +121,13 @@
                     <span>▣</span>
                     <span>Projects</span>
                 </a>
-                <a href="{{ route('admin.education.index') }}"
-                    class="nav-link {{ request()->routeIs('admin.education.*') ? 'active' : '' }}">
-                    <span>🎓</span>
-                    <span>Education</span>
-                </a>
+             <a href="{{ route('admin.education.index') }}"
+   class="nav-link {{ request()->routeIs('admin.education.*') ? 'active' : '' }}">
+
+    <span>🎓</span>
+    <span>Education</span>
+
+</a>
                 <a href="{{ route('admin.certifications.index') }}"
                     class="nav-link {{ request()->routeIs('admin.certifications.*') ? 'active' : '' }}">
 

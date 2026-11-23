@@ -44,9 +44,9 @@ class EducationController extends Controller
 
         Education::create($validated);
 
-        return redirect()
-            ->route('admin.education.index')
-            ->with('success', 'Education record added successfully.');
+      return redirect()
+    ->route('admin.education.index')
+    ->with('success', 'Education created successfully.');
     }
 
     /**
@@ -73,9 +73,9 @@ class EducationController extends Controller
 
         $education->update($validated);
 
-        return redirect()
-            ->route('admin.education.index')
-            ->with('success', 'Education record updated successfully.');
+      return redirect()
+    ->route('admin.education.index')
+    ->with('success', 'Education updated successfully.');
     }
 
     /**
