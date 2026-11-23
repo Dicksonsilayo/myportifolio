@@ -1,105 +1,138 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('layouts.admin')
 
-    <title>Admin Dashboard | Dickson Silayo</title>
+@section('page-heading', 'Dashboard')
 
-    <script src="https://cdn.tailwindcss.com"></script>
+@section('content')
 
-    <style>
-        body {
-            background: #080b14;
-            font-family: Arial, sans-serif;
-        }
+<div class="mb-8">
+    <h2 class="text-2xl font-bold text-white">
+        Welcome back, {{ auth()->user()->name }}!
+    </h2>
 
-        .dashboard-card {
-            background: #111827;
-            border: 1px solid #263247;
-        }
-    </style>
-</head>
+    <p class="text-gray-400 mt-2">
+        Here's an overview of your professional portfolio.
+    </p>
+</div>
 
-<body class="text-white min-h-screen">
+{{-- Statistics --}}
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 mb-8">
 
-    <header class="border-b border-gray-800 bg-gray-950">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex
-                    justify-between items-center">
-
-            <h1 class="text-2xl font-bold">
-                DS<span class="text-purple-500">.</span>
-                <span class="text-gray-400 text-sm ml-2">
-                    Admin Panel
-                </span>
-            </h1>
-
-            <div class="flex items-center gap-5">
-                <span class="text-gray-300 text-sm">
-                    {{ auth()->user()->name }}
-                </span>
-
-                <form action="{{ route('admin.logout') }}" method="POST">
-                    @csrf
-
-                    <button class="bg-red-600 hover:bg-red-700
-                                   px-4 py-2 rounded-lg text-sm">
-                        Logout
-                    </button>
-                </form>
+    {{-- Projects --}}
+    <div class="admin-card p-6">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm text-gray-400">Total Projects</p>
+                <h3 class="text-3xl font-bold text-white mt-2">
+                    {{ $statistics['projects'] }}
+                </h3>
             </div>
+            <div class="text-3xl text-purple-400">▣</div>
         </div>
-    </header>
+        <a href="{{ route('admin.projects.index') }}"
+           class="text-purple-400 text-sm inline-block mt-5 hover:text-purple-300">
+            Manage projects →
+        </a>
+    </div>
 
-    <main class="max-w-7xl mx-auto px-6 py-10">
-
-        <div class="mb-10">
-            <h2 class="text-3xl font-bold">
-                Dashboard Overview
-            </h2>
-
-            <p class="text-gray-400 mt-2">
-                Welcome back, {{ auth()->user()->name }}.
-                Manage your professional portfolio here.
-            </p>
+    {{-- Skills --}}
+    <div class="admin-card p-6">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm text-gray-400">Total Skills</p>
+                <h3 class="text-3xl font-bold text-white mt-2">
+                    {{ $statistics['skills'] }}
+                </h3>
+            </div>
+            <div class="text-3xl text-blue-400">✦</div>
         </div>
+        <p class="text-gray-500 text-sm mt-5">Technical skills in your portfolio</p>
+    </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-            @foreach ($statistics as $label => $value)
-
-                <div class="dashboard-card rounded-xl p-6">
-                    <p class="text-gray-400 text-sm uppercase tracking-wide">
-                        {{ str_replace('_', ' ', $label) }}
-                    </p>
-
-                    <h3 class="text-4xl font-bold text-purple-400 mt-4">
-                        {{ $value }}
-                    </h3>
-                </div>
-
-            @endforeach
-
+    {{-- Experience --}}
+    <div class="admin-card p-6">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm text-gray-400">Experience Records</p>
+                <h3 class="text-3xl font-bold text-white mt-2">
+                    {{ $statistics['experiences'] }}
+                </h3>
+            </div>
+            <div class="text-3xl text-green-400">▤</div>
         </div>
+        <p class="text-gray-500 text-sm mt-5">Professional experience</p>
+    </div>
 
-        <div class="mt-10 dashboard-card rounded-xl p-7">
-            <h3 class="text-xl font-semibold mb-3">
-                Portfolio Management
-            </h3>
-
-            <p class="text-gray-400">
-                Your administration area is now ready.
-                We will add project, skill, experience,
-                education, certification and message management next.
-            </p>
-
-            <a href="{{ route('home') }}"
-               class="inline-block mt-6 text-purple-400 hover:text-purple-300">
-                View Public Portfolio →
-            </a>
+    {{-- Certifications --}}
+    <div class="admin-card p-6">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm text-gray-400">Certifications</p>
+                <h3 class="text-3xl font-bold text-white mt-2">
+                    {{ $statistics['certifications'] }}
+                </h3>
+            </div>
+            <div class="text-3xl text-yellow-400">★</div>
         </div>
+        <p class="text-gray-500 text-sm mt-5">Professional certificates</p>
+    </div>
 
-    </main>
+    {{-- Messages --}}
+    <div class="admin-card p-6">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm text-gray-400">Total Messages</p>
+                <h3 class="text-3xl font-bold text-white mt-2">
+                    {{ $statistics['messages'] }}
+                </h3>
+            </div>
+            <div class="text-3xl text-pink-400">✉</div>
+        </div>
+        <p class="text-gray-500 text-sm mt-5">Messages received from visitors</p>
+    </div>
 
-</body>
-</html>
+    {{-- Unread Messages --}}
+    <div class="admin-card p-6">
+        <div class="flex items-center justify-between">
+            <div>
+                <p class="text-sm text-gray-400">Unread Messages</p>
+                <h3 class="text-3xl font-bold text-white mt-2">
+                    {{ $statistics['unread_messages'] }}
+                </h3>
+            </div>
+            <div class="text-3xl text-orange-400">●</div>
+        </div>
+        <p class="text-gray-500 text-sm mt-5">Messages waiting for your attention</p>
+    </div>
+
+</div>
+
+{{-- Quick Actions --}}
+<div class="admin-card p-6">
+
+    <h3 class="text-lg font-bold text-white mb-5">
+        Quick Actions
+    </h3>
+
+    <div class="flex flex-wrap gap-3">
+
+        <a href="{{ route('admin.projects.create') }}"
+           class="btn-primary">
+            + Add New Project
+        </a>
+
+        <a href="{{ route('admin.projects.index') }}"
+           class="px-5 py-3 rounded-lg bg-gray-700 text-white hover:bg-gray-600">
+            Manage Projects
+        </a>
+
+        <a href="{{ route('home') }}"
+           target="_blank"
+           class="px-5 py-3 rounded-lg border border-gray-600 text-gray-300 hover:bg-gray-800">
+            View Public Portfolio ↗
+        </a>
+
+    </div>
+
+</div>
+
+@endsection

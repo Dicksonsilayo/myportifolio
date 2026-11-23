@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProjectController;
+
+
 
 // Public portfolio
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -33,10 +36,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::middleware(['auth', 'admin'])->group(function () {
 
-        Route::get('/dashboard', [DashboardController::class, 'index'])
-            ->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
 
-        Route::post('/logout', [AuthController::class, 'logout'])
-            ->name('logout');
-    });
+    Route::resource('projects', ProjectController::class)
+        ->except(['show'])
+        ->names('projects');
+
+    Route::post('/logout', [AuthController::class, 'logout'])
+        ->name('logout');
+});
 });

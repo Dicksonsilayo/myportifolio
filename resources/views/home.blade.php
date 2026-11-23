@@ -514,7 +514,7 @@
 
             <div class="contact-socials">
 
-                <a href="https://github.com/disebene"
+                <a href="https://github.com/DicksonSilayo"
                    target="_blank"
                    rel="noopener noreferrer">
                     <i class="fab fa-github"></i>
