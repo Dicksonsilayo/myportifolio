@@ -126,7 +126,11 @@
                     <span>⚙</span>
                     Skills
                 </a>
-
+                <a href="{{ route('admin.experiences.index') }}"
+                    class="nav-link {{ request()->routeIs('admin.experiences.*') ? 'bg-purple-600/20 text-purple-400' : '' }}">
+                    <span>⚙</span>
+                    Experience
+                </a>
                 <p class="text-xs uppercase tracking-wider text-gray-500 px-4 py-3 mt-5">
                     Website
                 </p>

@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ExperienceController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\SkillController;
+
 
 
 
@@ -51,4 +53,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
             ->except(['show'])
             ->names('skills');
     });
+    Route::resource('experiences', ExperienceController::class)
+    ->except(['show'])
+    ->names('experiences');
 });
