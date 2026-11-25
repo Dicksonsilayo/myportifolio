@@ -805,6 +805,37 @@
                         </a>
 
                     @endif
+                    {{-- WhatsApp --}}
+@if($profile?->phone)
+
+    @php
+        $whatsappNumber = preg_replace('/[^0-9]/', '', $profile->phone);
+    @endphp
+
+    <a href="https://wa.me/{{ $whatsappNumber }}"
+       target="_blank"
+       rel="noopener noreferrer"
+       class="contact-info-card whatsapp-contact-card">
+
+        <div class="contact-icon whatsapp-icon">
+            <i class="fab fa-whatsapp"></i>
+        </div>
+
+        <div>
+
+            <span>WHATSAPP</span>
+
+            <h4>Chat with me</h4>
+
+            <p>{{ $profile->phone }}</p>
+
+        </div>
+
+        <i class="fas fa-arrow-up-right-from-square contact-arrow"></i>
+
+    </a>
+
+@endif
 
 
                     {{-- Location --}}
