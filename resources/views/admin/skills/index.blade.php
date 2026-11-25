@@ -8,7 +8,7 @@
     <div>
         <h1 class="text-2xl font-bold text-white">Skills Management</h1>
         <p class="text-gray-400 mt-1">
-            Manage the technical and professional skills displayed on your portfolio.
+            Manage the technical and professional skills displayed on my portfolio.
         </p>
     </div>
 

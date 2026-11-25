@@ -1,4 +1,3 @@
-
 <footer class="footer">
     <div class="container footer-content">
 
@@ -11,20 +10,33 @@
         </p>
 
         <div class="social-links">
-            <a href="https://github.com/disebene"
-               target="_blank" rel="noopener noreferrer"
+            <a href="https://github.com/DicksonSilayo"
+               target="_blank"
+               rel="noopener noreferrer"
                aria-label="GitHub">
                 <i class="fab fa-github"></i>
             </a>
         </div>
 
         <div class="footer-bottom">
+
             <p>
                 &copy; {{ date('Y') }} Dickson Silayo.
                 All rights reserved.
             </p>
 
-            <a href="#home">Back to top ↑</a>
+            <div class="footer-bottom-links">
+
+                <a href="#home">Back to top ↑</a>
+
+                <a href="{{ route('admin.login') }}"
+                   class="admin-login-link">
+                    <i class="fas fa-lock"></i>
+                    Admin Login
+                </a>
+
+            </div>
+
         </div>
 
     </div>

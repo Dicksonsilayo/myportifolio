@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AccountSettingsController;
 use Illuminate\Support\Facades\Route;
 
 // Public Controllers
@@ -160,6 +161,21 @@ Route::prefix('admin')
             // Update portfolio profile
             Route::put('/profile', [ProfileController::class, 'update'])
                 ->name('profile.update');
+                // --------------------------------------------------
+// ACCOUNT SETTINGS
+// --------------------------------------------------
+
+// Display account settings
+Route::get('/account-settings', [AccountSettingsController::class, 'edit'])
+    ->name('account-settings.edit');
+
+// Update account information
+Route::put('/account-settings/account', [AccountSettingsController::class, 'updateAccount'])
+    ->name('account-settings.update-account');
+
+// Change password
+Route::put('/account-settings/password', [AccountSettingsController::class, 'updatePassword'])
+    ->name('account-settings.update-password');
 
 
             // --------------------------------------------------

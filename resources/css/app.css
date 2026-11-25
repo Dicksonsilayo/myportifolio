@@ -1430,3 +1430,91 @@ button {
         font-size: 33px;
     }
 }
+
+/* =========================================
+   ADMIN LOGIN FOOTER LINK
+========================================= */
+
+.footer-bottom-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.admin-login-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.admin-login-link i {
+    color: var(--primary-light);
+    font-size: 12px;
+}
+
+.admin-login-link:hover {
+    color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 600px) {
+    .footer-bottom {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .footer-bottom-links {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+
+/* =========================================
+   ACCESSIBILITY AND FORM POLISH
+========================================= */
+
+:focus-visible {
+    outline: 2px solid var(--secondary);
+    outline-offset: 4px;
+}
+
+.contact-input-wrapper textarea {
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    color: #f9fafb;
+    background: transparent;
+    font-family: inherit;
+    font-size: 13px;
+}
+
+.contact-input-wrapper textarea::placeholder {
+    color: #64748b;
+}
+
+.contact-info-card,
+.project-card,
+.skill-card,
+.education-card,
+.certification-card,
+.highlight-card {
+    overflow-wrap: anywhere;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
