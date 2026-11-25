@@ -1507,6 +1507,32 @@ button {
 .highlight-card {
     overflow-wrap: anywhere;
 }
+/* =========================================================
+   WHATSAPP CONTACT CARD
+========================================================= */
+
+.whatsapp-contact-card {
+    transition: all 0.3s ease;
+}
+
+.whatsapp-contact-card:hover {
+    border-color: #25d366;
+    transform: translateY(-4px);
+}
+
+.whatsapp-icon {
+    background: rgba(37, 211, 102, 0.12) !important;
+    color: #25d366 !important;
+}
+
+.whatsapp-contact-card:hover .whatsapp-icon {
+    background: #25d366 !important;
+    color: #ffffff !important;
+}
+
+.whatsapp-contact-card .contact-arrow {
+    color: #25d366;
+}
 
 @media (prefers-reduced-motion: reduce) {
     *,
